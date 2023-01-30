@@ -43,11 +43,22 @@
 
 .calculator__output {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     box-sizing: border-box;
+    padding: 0 15px;
     min-height: 80px;
     border-radius: 10px;
     margin-bottom: 20px;
     background-color: var(--color-third);
+    color: #000000;
+}
+
+.calculator__output-content {
+    margin: 0;
+    font-size: 24px;
+    text-align: right;
 }
 
 /* .calculator__input {
