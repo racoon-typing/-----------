@@ -42,7 +42,7 @@ calculatorList.addEventListener('click', (e) => {
                 result = firstComponent - secondComponent;
             } else if (secondString === 'plus') {
                 result = firstComponent + secondComponent;
-            }
+            } 
 
             // Кол-во знаков после запятой у первого числа
             const decimalNumberfirstComponent = firstComponent.toString().match(/\.(\d+)/)?.[1].length
@@ -89,6 +89,26 @@ calculatorList.addEventListener('click', (e) => {
                 thirdString = '';
                 return;
             }
+        } else if (e.target.id === 'percent') {
+            // 1-ое значение
+            let firstComponent = Number(firstString);
+            // 2-ое значение
+            let secondComponent = Number(thirdString);
+            console.log(firstComponent);
+            console.log(secondComponent);
+            console.log(secondString);
+
+
+            if (secondString === 'multiply') {
+                result = (secondComponent / firstComponent) * 100 ;
+                outputContentNode.textContent = `${result}%`;
+
+                // Очистить поля
+                firstString = '';
+                secondString = '';
+                thirdString = '';
+                return;
+            }
         }
     }
 
@@ -98,7 +118,7 @@ calculatorList.addEventListener('click', (e) => {
 
     // Проверка на наличие знака во 2 строке
     if (secondString !== '') {
-        if (e.target.id === 'divide' || e.target.id === 'multiply') {
+        if (e.target.id === 'divide' || e.target.id === 'multiply' || e.target.id === 'percent') {
             return;
         }
 
