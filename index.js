@@ -84,6 +84,7 @@ calculatorList.addEventListener('click', (e) => {
                 outputContentNode.textContent = result;
 
                 // Очистить поля
+                result = '';
                 firstString = '';
                 secondString = '';
                 thirdString = '';
@@ -143,7 +144,7 @@ calculatorList.addEventListener('click', (e) => {
 
     // Проверка на наличие знака во 2 строке
     if (secondString !== '') {
-        if (e.target.id === 'divide' || e.target.id === 'multiply' || e.target.id === 'percent') {
+        if (e.target.id === 'divide' || e.target.id === 'multiply' || e.target.id === 'percent' || e.target.id === 'equals') {
             return;
         }
 
@@ -222,6 +223,7 @@ calculatorList.addEventListener('click', (e) => {
             console.log(secondString);
         }
     } else {
+        // Добавляет 0 и точку
         if (e.target.id === 'dot' && addDotFirst) {
             console.log(addDotFirst);
 
@@ -248,6 +250,13 @@ calculatorList.addEventListener('click', (e) => {
             outputContentNode.textContent = firstString;
             return;
         }
+
+        // Не дает писать 0 первым числом
+        if (e.target.id === '0' && firstString === '') {
+            firstString = '';
+            return;
+        }
+
         firstString += e.target.id;
         console.log(firstString);
         outputContentNode.textContent = firstString;
