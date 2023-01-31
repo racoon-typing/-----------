@@ -88,37 +88,39 @@
     font-weight: 600;
 }
 
-.calculator__list .calculator__item:nth-child(1) {
+/* .calculator__list .calculator__item:nth-child(1) {
     grid-column: 1 / 4;
-}
+} */
 
 .calculator__list .calculator__item:nth-child(1) button {
     background-color: var(--color-second);
 }
 
-.calculator__list .calculator__item:nth-child(15) {
+.calculator__list .calculator__item:nth-child(17) {
     grid-column: 1 / 3;
 }
 
 .calculator__list .calculator__item:nth-child(2) button,
-.calculator__list .calculator__item:nth-child(6) button, 
-.calculator__list .calculator__item:nth-child(10) button, 
-.calculator__list .calculator__item:nth-child(14) button, 
-.calculator__list .calculator__item:nth-child(17) button {
+.calculator__list .calculator__item:nth-child(3) button,
+.calculator__list .calculator__item:nth-child(4) button,
+.calculator__list .calculator__item:nth-child(8) button, 
+.calculator__list .calculator__item:nth-child(12) button, 
+.calculator__list .calculator__item:nth-child(16) button, 
+.calculator__list .calculator__item:nth-child(19) button {
     background-color: var(--color-main);
 }
 
-.calculator__list .calculator__item:nth-child(3) button,
-.calculator__list .calculator__item:nth-child(4) button, 
-.calculator__list .calculator__item:nth-child(5) button, 
+.calculator__list .calculator__item:nth-child(5) button,
+.calculator__list .calculator__item:nth-child(6) button, 
 .calculator__list .calculator__item:nth-child(7) button, 
-.calculator__list .calculator__item:nth-child(8) button, 
 .calculator__list .calculator__item:nth-child(9) button, 
+.calculator__list .calculator__item:nth-child(10) button, 
 .calculator__list .calculator__item:nth-child(11) button, 
-.calculator__list .calculator__item:nth-child(12) button, 
 .calculator__list .calculator__item:nth-child(13) button, 
-.calculator__list .calculator__item:nth-child(15) button,
-.calculator__list .calculator__item:nth-child(16) button {
+.calculator__list .calculator__item:nth-child(14) button, 
+.calculator__list .calculator__item:nth-child(15) button, 
+.calculator__list .calculator__item:nth-child(17) button,
+.calculator__list .calculator__item:nth-child(18) button {
     background-color: var(--color-third);
     color: var(--bg-second);
 }

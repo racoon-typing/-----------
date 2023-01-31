@@ -137,8 +137,8 @@ calculatorList.addEventListener('click', (e) => {
     let addDotFirst = true;
 
     // Проверка на пустую 1 строку
-    if (e.target.id === 'divide' || e.target.id === 'multiply' || e.target.id === 'minus' || e.target.id === 'plus' || e.target.id === 'equals' || e.target.id === 'del') {
-        if (firstString === '' || firstString === '-' || firstString === '+') {
+    if (e.target.id === 'divide' || e.target.id === 'multiply' || e.target.id === 'minus' || e.target.id === 'plus' || e.target.id === 'equals' || e.target.id === 'del' || e.target.id === 'root' || e.target.id === 'percent') {
+        if (firstString === '' || firstString === '-') {
             // Если хотим написать отрицательное число 
             if (e.target.id === 'minus') {
                 firstString = '-';
@@ -155,8 +155,23 @@ calculatorList.addEventListener('click', (e) => {
             console.log('Введите какой-нибудь символ');
             return;
         } else {
-            secondString = e.target.id;
+            if (e.target.id === 'root') {
+                console.log('Вычисляем корень');
 
+                // Вычиляет вадратный корень числа
+                let firstNumber = Number(firstString);
+                let resultRoot = Math.sqrt(firstNumber);
+
+                // Выводит квадратный корень
+                outputContentNode.textContent = resultRoot;
+
+                // Очистить поля
+                firstString = '';
+                secondString = '';
+                return;
+            }
+            
+            secondString = e.target.id;
             outputContentNode.textContent = '';
             console.log(secondString);
         }
