@@ -75,10 +75,19 @@ calculatorList.addEventListener('click', (e) => {
 
     // Добавить точку: true
     let addDotSecond = true;
+    let isNegativeNumber = false;
 
     // Проверка на наличие знака во 2 строке
     if (secondString !== '') {
         if (e.target.id === 'divide' || e.target.id === 'multiply' || e.target.id === 'minus' || e.target.id === 'plus' || e.target.id === 'del') {
+            if (e.target.id === 'minus') {
+                if (isNegativeNumber) {
+    
+                }
+                
+                isNegativeNumber = true;
+            }
+            
             secondString = e.target.id;
             console.log(secondString);
             return;
