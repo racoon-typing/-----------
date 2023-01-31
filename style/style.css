@@ -21,6 +21,7 @@
     width: 100%;
     height: 100%;
     min-height: 100vh;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,14 +61,6 @@
     font-size: 24px;
     text-align: right;
 }
-
-/* .calculator__input {
-    width: 100%;
-    box-sizing: border-box;
-    min-height: 80px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-} */
 
 .calculator__list {
     display: grid;
@@ -122,4 +115,40 @@
 }
 
 
-/* --color-second */
+/* Планшет */
+@media (min-width: 768px) {
+    .calculator {
+        width: 60%;
+    }
+
+    .calculator__output {
+        min-height: 100px;
+    }
+
+    .calculator__output-content {
+        font-size: 28px;
+    }
+
+    .calculator__item {
+        font-size: 20px;
+        padding: 30px 10px;
+    }
+}
+
+
+/* Ноут */
+@media (min-width: 1200px) {
+    .main {
+        flex-direction: row-reverse;
+        padding: 40px;
+    }
+
+    .main__title {
+        margin: 0;
+        margin-left: 60px;
+    }
+
+    .calculator {
+        width: 30%;
+    }
+}
