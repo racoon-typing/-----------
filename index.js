@@ -88,7 +88,7 @@ calculatorList.addEventListener('click', (e) => {
                 const isPoint = thirdString.match(/\./);
                 if (isPoint) {
                     addDotSecond = false;
-                    console.log(isPoint);
+                    console.log(addDotFirst);
                     return;
                 }
 
@@ -110,7 +110,7 @@ calculatorList.addEventListener('click', (e) => {
     // Проверка на пустую 1 строку
     if (e.target.id === 'divide' || e.target.id === 'multiply' || e.target.id === 'minus' || e.target.id === 'plus' || e.target.id === 'equals' || e.target.id === 'del') {
         if (firstString === '' || firstString === '-' || firstString === '+') {
-            // Если отрицательное число 
+            // Если хотим написать отрицательное число 
             if (e.target.id === 'minus') {
                 firstString = '-';
                 console.log(firstString);
@@ -140,13 +140,17 @@ calculatorList.addEventListener('click', (e) => {
                 firstString += '0.';
                 outputContentNode.textContent = firstString;
                 return;
+            } else if (firstString === '-') {
+                firstString += '0.';
+                outputContentNode.textContent = firstString;
+                return;
             }
 
             // Целое число или нет
             const isPoint = firstString.match(/\./);
             if (isPoint) {
                 addDotFirst = false;
-                console.log(isPoint);
+                console.log(addDotFirst);
                 return;
             }
 
