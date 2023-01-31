@@ -100,14 +100,39 @@ calculatorList.addEventListener('click', (e) => {
 
 
             if (secondString === 'multiply') {
+                // Расчет n процентов от числа
                 result = (secondComponent / firstComponent) * 100 ;
-                outputContentNode.textContent = `${result}%`;
 
-                // Очистить поля
-                firstString = '';
-                secondString = '';
-                thirdString = '';
-                return;
+                // Кол-во знаков после запятой у результата
+                const decimalNumber = result.toString().match(/\.(\d+)/)?.[1].length
+                console.log(decimalNumber);
+
+                // Округление после запятой
+                if (decimalNumber >= 5) {
+                    outputContentNode.textContent = `${result.toFixed(5)}%`;
+    
+                    // Очистить поля
+                    firstString = '';
+                    secondString = '';
+                    thirdString = '';
+                    return;
+                } else if (decimalNumber >= 1 && decimalNumber < 5) {
+                    outputContentNode.textContent = `${result.toFixed(decimalNumber)}%`;
+
+                    // Очистить поля
+                    firstString = '';
+                    secondString = '';
+                    thirdString = '';
+                    return;
+                } else {
+                    outputContentNode.textContent = `${result}%`;
+    
+                    // Очистить поля
+                    firstString = '';
+                    secondString = '';
+                    thirdString = '';
+                    return;
+                }
             }
         }
     }
