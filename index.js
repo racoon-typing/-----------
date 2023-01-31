@@ -51,6 +51,11 @@ calculatorList.addEventListener('click', (e) => {
             // Проверка, если у первого числа один знак после запятой, то при делении будет 1 знак 
             if (decimalNumberfirstComponent === 1) {
                 outputContentNode.textContent = result.toFixed(1);
+
+                // Очистить поля
+                firstString = '';
+                secondString = '';
+                thirdString = '';
                 return;
             }
 
@@ -61,12 +66,27 @@ calculatorList.addEventListener('click', (e) => {
             // Проверка на целочисленный результат
             if (decimalNumber >= 5) {
                 outputContentNode.textContent = result.toFixed(5);
+
+                // Очистить поля
+                firstString = '';
+                secondString = '';
+                thirdString = '';
                 return;
             } else if (decimalNumber >= 1 && decimalNumber < 5) {
                 outputContentNode.textContent = result.toFixed(decimalNumber);
+
+                // Очистить поля
+                firstString = '';
+                secondString = '';
+                thirdString = '';
                 return;
             } else {
                 outputContentNode.textContent = result;
+
+                // Очистить поля
+                firstString = '';
+                secondString = '';
+                thirdString = '';
                 return;
             }
         }
@@ -75,41 +95,41 @@ calculatorList.addEventListener('click', (e) => {
 
     // Добавить точку: true
     let addDotSecond = true;
-    let isNegativeNumber = false;
 
     // Проверка на наличие знака во 2 строке
     if (secondString !== '') {
-        if (e.target.id === 'divide' || e.target.id === 'multiply' || e.target.id === 'minus' || e.target.id === 'plus' || e.target.id === 'del') {
-            if (e.target.id === 'minus') {
-                if (isNegativeNumber) {
-    
-                }
-                
-                isNegativeNumber = true;
-            }
-            
-            secondString = e.target.id;
-            console.log(secondString);
-            return;
-        } else {
-            if (e.target.id === 'dot' && addDotSecond) {
-                // Целое число или нет
-                const isPoint = thirdString.match(/\./);
-                if (isPoint) {
-                    addDotSecond = false;
-                    console.log(addDotFirst);
-                    return;
-                }
-
-                thirdString += '.';
-                outputContentNode.textContent = thirdString;
-                return;
-            }
-            thirdString += e.target.id;
-            outputContentNode.textContent = thirdString;
-            console.log(thirdString);
+        if (e.target.id === 'divide' || e.target.id === 'multiply') {
             return;
         }
+
+        if (e.target.id === 'minus') {
+            thirdString = '-';
+            outputContentNode.textContent = thirdString;
+            return;
+        } else if (e.target.id === 'plus') {
+            thirdString = '';
+            console.log(thirdString);
+            outputContentNode.textContent = thirdString;
+            return;
+        }
+
+        if (e.target.id === 'dot' && addDotSecond) {
+            // Целое число или нет
+            const isPoint = thirdString.match(/\./);
+            if (isPoint) {
+                addDotSecond = false;
+                console.log(addDotFirst);
+                return;
+            }
+
+            thirdString += '0.';
+            outputContentNode.textContent = thirdString;
+            return;
+        }
+        thirdString += e.target.id;
+        outputContentNode.textContent = thirdString;
+        console.log(thirdString);
+        return;
     }
 
 
