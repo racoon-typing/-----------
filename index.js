@@ -126,6 +126,7 @@ calculatorList.addEventListener('click', (e) => {
             outputContentNode.textContent = thirdString;
             return;
         }
+
         thirdString += e.target.id;
         outputContentNode.textContent = thirdString;
         console.log(thirdString);
