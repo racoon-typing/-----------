@@ -16,7 +16,7 @@ calculatorList.addEventListener('click', (e) => {
         result = 0;
         firstString = '';
         secondString = '';
-        thirdString = ''; 
+        thirdString = '';
         outputContentNode.textContent = '';
         console.log('Поле очищено');
         return;
@@ -44,9 +44,26 @@ calculatorList.addEventListener('click', (e) => {
                 result = firstComponent + secondComponent;
             }
 
+            // Кол-во знаков после запятой у первого числа
+            const decimalNumberfirstComponent = firstComponent.toString().match(/\.(\d+)/)?.[1].length
+            console.log(decimalNumberfirstComponent);
+
+            // Проверка, если у первого числа один знак после запятой, то при делении будет 1 знак 
+            if (decimalNumberfirstComponent === 1) {
+                outputContentNode.textContent = result.toFixed(1);
+                return;
+            }
+
+            // Кол-во знаков после запятой у результата
+            const decimalNumber = result.toString().match(/\.(\d+)/)?.[1].length
+            console.log(decimalNumber);
+
             // Проверка на целочисленный результат
-            if (!Number.isInteger(result)) {
-                outputContentNode.textContent = result.toFixed(2);
+            if (decimalNumber >= 5) {
+                outputContentNode.textContent = result.toFixed(5);
+                return;
+            } else if (decimalNumber >= 1 && decimalNumber < 5) {
+                outputContentNode.textContent = result.toFixed(decimalNumber);
                 return;
             } else {
                 outputContentNode.textContent = result;
@@ -56,11 +73,29 @@ calculatorList.addEventListener('click', (e) => {
     }
 
 
+    // Добавить точку: true
+    let addDotSecond = true;
+
     // Проверка на наличие знака во 2 строке
     if (secondString !== '') {
         if (e.target.id === 'divide' || e.target.id === 'multiply' || e.target.id === 'minus' || e.target.id === 'plus' || e.target.id === 'del') {
+            secondString = e.target.id;
+            console.log(secondString);
             return;
         } else {
+            if (e.target.id === 'dot' && addDotSecond) {
+                // Целое число или нет
+                const isPoint = thirdString.match(/\./);
+                if (isPoint) {
+                    addDotSecond = false;
+                    console.log(isPoint);
+                    return;
+                }
+
+                thirdString += '.';
+                outputContentNode.textContent = thirdString;
+                return;
+            }
             thirdString += e.target.id;
             outputContentNode.textContent = thirdString;
             console.log(thirdString);
@@ -69,9 +104,25 @@ calculatorList.addEventListener('click', (e) => {
     }
 
 
+    // Добавить точку: true
+    let addDotFirst = true;
+
     // Проверка на пустую 1 строку
     if (e.target.id === 'divide' || e.target.id === 'multiply' || e.target.id === 'minus' || e.target.id === 'plus' || e.target.id === 'equals' || e.target.id === 'del') {
-        if (firstString === '') {
+        if (firstString === '' || firstString === '-' || firstString === '+') {
+            // Если отрицательное число 
+            if (e.target.id === 'minus') {
+                firstString = '-';
+                console.log(firstString);
+                outputContentNode.textContent = firstString;
+                return;
+            } else if (e.target.id === 'plus') {
+                firstString = '';
+                console.log(firstString);
+                outputContentNode.textContent = firstString;
+                return;
+            }
+
             console.log('Введите какой-нибудь символ');
             return;
         } else {
@@ -81,8 +132,26 @@ calculatorList.addEventListener('click', (e) => {
             console.log(secondString);
         }
     } else {
-        if (e.target.id === 'dot') {
+        if (e.target.id === 'dot' && addDotFirst) {
+            console.log(addDotFirst);
+
+            // Чтобы появлялся ноль перед запятой
+            if (firstString === '') {
+                firstString += '0.';
+                outputContentNode.textContent = firstString;
+                return;
+            }
+
+            // Целое число или нет
+            const isPoint = firstString.match(/\./);
+            if (isPoint) {
+                addDotFirst = false;
+                console.log(isPoint);
+                return;
+            }
+
             firstString += '.';
+            outputContentNode.textContent = firstString;
             return;
         }
         firstString += e.target.id;
