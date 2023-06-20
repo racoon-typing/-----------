@@ -9,8 +9,6 @@ let thirdString = '';
 // Слушатель на нажатие
 calculatorList.addEventListener('click', (e) => {
 
-    console.log(e.target.id);
-
     // Очищает поля
     if (e.target.id === 'del') {
         result = 0;
@@ -18,10 +16,8 @@ calculatorList.addEventListener('click', (e) => {
         secondString = '';
         thirdString = '';
         outputContentNode.textContent = '';
-        console.log('Поле очищено');
         return;
     }
-
 
     // Проверка на пустую 3 строку
     if (thirdString !== '') {
@@ -30,9 +26,6 @@ calculatorList.addEventListener('click', (e) => {
             let firstComponent = Number(firstString);
             // 2-ое значение
             let secondComponent = Number(thirdString);
-            console.log(firstComponent);
-            console.log(secondComponent);
-            console.log(secondString);
 
             if (secondString === 'divide') {
                 result = firstComponent / secondComponent;
@@ -46,7 +39,6 @@ calculatorList.addEventListener('click', (e) => {
 
             // Кол-во знаков после запятой у первого числа
             const decimalNumberfirstComponent = firstComponent.toString().match(/\.(\d+)/)?.[1].length
-            console.log(decimalNumberfirstComponent);
 
             // Проверка, если у первого числа один знак после запятой, то при делении будет 1 знак 
             if (decimalNumberfirstComponent === 1) {
@@ -61,7 +53,6 @@ calculatorList.addEventListener('click', (e) => {
 
             // Кол-во знаков после запятой у результата
             const decimalNumber = result.toString().match(/\.(\d+)/)?.[1].length
-            console.log(decimalNumber);
 
             // Проверка на целочисленный результат
             if (decimalNumber >= 5) {
@@ -95,10 +86,6 @@ calculatorList.addEventListener('click', (e) => {
             let firstComponent = Number(firstString);
             // 2-ое значение
             let secondComponent = Number(thirdString);
-            console.log(firstComponent);
-            console.log(secondComponent);
-            console.log(secondString);
-
 
             if (secondString === 'multiply') {
                 // Расчет n процентов от числа
@@ -106,7 +93,6 @@ calculatorList.addEventListener('click', (e) => {
 
                 // Кол-во знаков после запятой у результата
                 const decimalNumber = result.toString().match(/\.(\d+)/)?.[1].length
-                console.log(decimalNumber);
 
                 // Округление после запятой
                 if (decimalNumber >= 5) {
@@ -154,7 +140,6 @@ calculatorList.addEventListener('click', (e) => {
             return;
         } else if (e.target.id === 'plus') {
             thirdString = '';
-            console.log(thirdString);
             outputContentNode.textContent = thirdString;
             return;
         }
@@ -164,7 +149,6 @@ calculatorList.addEventListener('click', (e) => {
             const isPoint = thirdString.match(/\./);
             if (isPoint) {
                 addDotSecond = false;
-                console.log(addDotFirst);
                 return;
             }
 
@@ -175,7 +159,6 @@ calculatorList.addEventListener('click', (e) => {
 
         thirdString += e.target.id;
         outputContentNode.textContent = thirdString;
-        console.log(thirdString);
         return;
     }
 
@@ -189,22 +172,16 @@ calculatorList.addEventListener('click', (e) => {
             // Если хотим написать отрицательное число 
             if (e.target.id === 'minus') {
                 firstString = '-';
-                console.log(firstString);
                 outputContentNode.textContent = firstString;
                 return;
             } else if (e.target.id === 'plus') {
                 firstString = '';
-                console.log(firstString);
                 outputContentNode.textContent = firstString;
                 return;
             }
-
-            console.log('Введите какой-нибудь символ');
             return;
         } else {
             if (e.target.id === 'root') {
-                console.log('Вычисляем корень');
-
                 // Вычиляет вадратный корень числа
                 let firstNumber = Number(firstString);
                 let resultRoot = Math.sqrt(firstNumber);
@@ -220,13 +197,10 @@ calculatorList.addEventListener('click', (e) => {
             
             secondString = e.target.id;
             outputContentNode.textContent = '';
-            console.log(secondString);
         }
     } else {
         // Добавляет 0 и точку
         if (e.target.id === 'dot' && addDotFirst) {
-            console.log(addDotFirst);
-
             // Чтобы появлялся ноль перед запятой
             if (firstString === '') {
                 firstString += '0.';
@@ -242,7 +216,6 @@ calculatorList.addEventListener('click', (e) => {
             const isPoint = firstString.match(/\./);
             if (isPoint) {
                 addDotFirst = false;
-                console.log(addDotFirst);
                 return;
             }
 
@@ -258,7 +231,6 @@ calculatorList.addEventListener('click', (e) => {
         }
 
         firstString += e.target.id;
-        console.log(firstString);
         outputContentNode.textContent = firstString;
     }
 });
